@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Interior - Solusi Interior Elegan untuk Hunian Impian Anda</title>
+    <meta name="description" content="Nova Interior menyediakan jasa desain interior dan custom furniture berkualitas tinggi dengan desain modern, elegan, dan harga terjangkau.">
+    <meta name="keywords" content="interior design, custom furniture, kitchen set, renovasi rumah, nova interior">
+    <meta name="author" content="Nova Interior">
+
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary-gold: #c5a059;
+            --primary-dark: #1a1a1a;
+            --secondary-dark: #2c2c2c;
+            --accent-cream: #fdfbf7;
+            --light-bg: #f9f8f5;
+            --text-muted: #6c757d;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: var(--accent-cream);
+        }
+
+        /* Custom Navbar */
+        .navbar {
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff !important;
+        }
+
+        .navbar-brand span {
+            color: var(--primary-gold);
+        }
+
+        .nav-link {
+            color: #f8f9fa !important;
+            font-weight: 500;
+            transition: color 0.3s;
+            margin: 0 5px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-gold) !important;
+        }
+
+        .btn-gold {
+            background-color: var(--primary-gold);
+            color: #fff;
+            border: 1px solid var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: #b08d4c;
+            color: #fff;
+            border-color: #b08d4c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+        }
+
+        .btn-outline-gold {
+            background-color: transparent;
+            color: #fff;
+            border: 1px solid var(--primary-gold);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-gold:hover {
+            background-color: var(--primary-gold);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.3);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80') no-repeat center center;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding-top: 80px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            color: var(--primary-gold);
+            font-weight: 600;
+            font-size: 1.5rem;
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-gold);
+            margin: 15px auto 0 auto;
+        }
+
+        .text-start .section-title::after {
+            margin: 15px 0 0 0;
+        }
+
+        /* Cards & Hover Effects */
+        .custom-card {
+            background: #fff;
+            border: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .custom-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Service Cards */
+        .service-card {
+            padding: 40px 30px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-bottom-color: var(--primary-gold);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            height: 280px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: #fff;
+            padding: 25px 20px 15px 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Process Section */
+        .process-step {
+            background: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .process-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-gold);
+            color: #fff;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+        }
+
+        /* Testimonial */
+        .testimonial-card {
+            background: #fff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            height: 100%;
+        }
+
+        .testimonial-card::before {
+            content: "\f278";
+            font-family: "Bootstrap Icons";
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5rem;
+            color: rgba(197, 160, 89, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: #aaa;
+            padding: 70px 0 30px 0;
+        }
+
+        footer h5 {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        footer ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer ul li a:hover {
+            color: var(--primary-gold);
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-dark);
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-gold);
+            transform: translateY(-3px);
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #20ba5a;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#beranda">Nova <span>Interior</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#beranda">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tentang">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#layanan">Layanan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#proses">Proses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#statistik">Statistik</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimoni">Testimoni</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a href="#kontak" class="btn btn-gold btn-sm px-4 py-2 rounded-pill">Hubungi Kami</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Hero / Beranda -->
+    <header id="beranda" class="hero-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <h2 class="hero-subtitle mb-3">Nova Interior</h2>
+                    <h1 class="hero-title mb-4">"Solusi Interior Elegan untuk Hunian Impian Anda"</h1>
+                    <p class="lead mb-5 mx-auto" style="max-width: 750px;">"Kami menghadirkan desain dan furniture interior berkualitas dengan harga terjangkau untuk menciptakan ruangan yang nyaman, modern, dan sesuai karakter Anda."</p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="#galeri" class="btn btn-gold btn-lg px-4 py-3 rounded-pill">Lihat Galeri</a>
+                        <a href="#kontak" class="btn btn-outline-gold btn-lg px-4 py-3 rounded-pill">Hubungi Kami</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Section Tentang Kami -->
+    <section id="tentang">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Tentang Nova Interior" class="img-fluid rounded-4 shadow-lg w-100" style="object-fit: cover; height: 450px;">
+                        <div class="position-absolute bottom-0 end-0 bg-white p-4 rounded-4 shadow m-3 d-none d-sm-block" style="border-left: 5px solid var(--primary-gold);">
+                            <h3 class="h4 fw-bold mb-0 text-dark">15+ Tahun</h3>
+                            <p class="mb-0 text-muted small">Pengalaman Terpercaya</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-start">
+                    <h6 class="text-uppercase fw-bold" style="color: var(--primary-gold); letter-spacing: 2px;">Tentang Kami</h6>
+                    <h2 class="section-title">Mewujudkan Estetika Ruang Sejak 2008</h2>
+                    <p class="text-muted mb-4">"Nova Interior didirikan pada tahun 2008 oleh Bapak Dino. Kami bergerak dalam bidang pembuatan dan jasa interior dengan mengutamakan kualitas, desain, kenyamanan, dan kepuasan pelanggan."</p>
+                    <p class="text-muted mb-4">Kami percaya bahwa setiap ruangan memiliki cerita dan karakter tersendiri. Oleh karena itu, setiap proyek dikerjakan secara teliti oleh tenaga ahli profesional yang berpengalaman di bidangnya.</p>
+                    
+                    <div class="row g-4 mt-2">
+                        <div class="col-6 col-md-3">
+                            <div class="custom-card p-3 text-center">
+                                <h4 class="fw-bold text-dark mb-1">15+</h4>
+                                <p class="small text-muted mb-0">Tahun Pengalaman</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="custom-card p-3 text-center">
+                                <h4 class="fw-bold text-dark mb-1">500+</h4>
+                                <p class="small text-muted mb-0">Projek Selesai</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="custom-card p-3 text-center">
+                                <h4 class="fw-bold text-dark mb-1">300+</h4>
+                                <p class="small text-muted mb-0">Pelanggan</p>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="custom-card p-3 text-center">
+                                <h4 class="fw-bold text-dark mb-1">25+</h4>
+                                <p class="small text-muted mb-0">Tim Profesional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Section Layanan -->
+    <section id="layanan" class="bg-light">
+        <div class="container text-center">
+            <h6 class="text-uppercase fw-bold" style="color: var(--primary-gold); letter-spacing: 2px;">Layanan Kami</h6>
+            <h2 class="section-title">Solusi Interior Terbaik Untuk Anda</h2>
+            <p class="text-muted mx-auto mb-5" style="max-width: 600px;">Kami menawarkan berbagai layanan pembuatan dan perancangan interior komprehensif untuk hunian maupun komersial.</p>
+            
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-house-gear"></i>
+                        </div>
+                        <h4 class="h5 fw-bold mb-3">Desain Interior</h4>
+                        <p class="text-muted small mb-0">Perencanaan tata letak ruang dan visualisasi 3D yang estetis dan fungsional sesuai kebutuhan Anda.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-hammer"></i>
+                        </div>
+                        <h4 class="h5 fw-bold mb-3">Custom Furniture</h4>
+                        <p class="text-muted small mb-0">Pembuatan furniture custom (lemari, credenza, tempat tidur, backdrop TV) dengan material pilihan terbaik.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-cup-hot"></i>
+                        </div>
+                        <h4 class="h5 fw-bold mb-3">Kitchen Set</h4>
+                        <p class="text-muted small mb-0">Desain kitchen set modern, minimalis, dan fungsional untuk memaksimalkan area dapur kesayangan Anda.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="bi bi-tools"></i>
+                        </div>
+                        <h4 class="h5 fw-bold mb-3">Renovasi Ruangan</h4>
+                        <p class="text-muted small mb-0">Jasa renovasi total maupun parsial untuk mengubah suasana ruangan lama menjadi baru dan menawan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Section Galeri -->
+    <section id="galeri">
+        <div class="container text-center">
+            <h6 class="text-uppercase fw-bold" style="color: var(--primary-gold); letter-spacing: 2px;">Portofolio Kami</h6>
+            <h2 class="section-title">Galeri Projek Pilihan</h2>
+            <p class="text-muted mx-auto mb-5" style="max-width: 600px;">Jelajahi sebagian hasil karya terbaik yang telah kami kerjakan untuk para klien kami.</p>
+            
+            <div class="row g-4">
+                <!-- Gallery 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80" alt="Living Room">
+                        <div class="gallery-overlay">
+                            <span class="badge bg-gold mb-1" style="background-color: var(--primary-gold);">Living Room</span>
+                            <h5 class="h6 mb-0">Modern Minimalist Living Room - BSD</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gallery 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80" alt="Bedroom">
+                        <div class="gallery-overlay">
+                            <span class="badge mb-1" style="background-color: var(--primary-gold);">Bedroom</span>
+                            <h5 class="h6 mb-0">Luxury Master Bedroom - Pondok Indah</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gallery 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="Kitchen">
+                        <div class="gallery-overlay">
+                            <span class="badge mb-1" style="background-color: var(--primary-gold);">Kitchen</span>
+                            <h5 class="h6 mb-0">Elegant Modern Kitchen Set - Menteng</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gallery 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Office">
+                        <div class="gallery-overlay">
+                            <span class="badge mb-1" style="background-color: var(--primary-gold);">Office</span>
+                            <h5 class="h6 mb-0">Executive Home Office - Senayan</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gallery 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" alt="Minimalist Interior">
+                        <div class="gallery-overlay">
+                            <span class="badge mb-1" style="background-color: var(--primary-gold);">Minimalist Interior</span>
+                            <h5 class="h6 mb-0">Apartemen Minimalis Studio - Kemang</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gallery 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Luxury Interior">
+                        <div class="gallery-overlay">
+                            <span class="badge mb-1" style="background-color: var(--primary-gold);">Luxury Interior</span>
+                            <h5 class="h6 mb-0">Classic Luxury Residence - PIK</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <a href="#kontak" class="btn btn-gold px-5 py-3 rounded-pill">Lihat Semua Projek</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Section Proses Pembuatan -->
+    <section id="proses" class="bg-light">
+        <div class="container text-center">
+            <h6 class="text-uppercase fw-bold" style="color: var(--primary-gold); letter-spacing: 2px;">Alur Kerja</h6>
+            <h2 class="section-title">Proses Pengerjaan Projek Kami</h2>
+            <p class="text-muted mx-auto mb-5" style="max-width: 600px;">Tahapan terstruktur untuk memastikan hasil akhir pengerjaan interior sesuai dengan harapan Anda secara tepat waktu.</p>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <h4 class="h5 fw-bold mb-3">Konsultasi</h4>
+                        <p class="text-muted small mb-0">Diskusi awal mengenai konsep, gaya desain, kebutuhan fungsi ruangan, serta estimasi anggaran proyek.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <h4 class="h5 fw-bold mb-3">Pengukuran</h4>
+                        <p class="text-muted small mb-0">Tim surveyor melakukan pengukuran langsung ke lokasi agar dimensi ruang presisi dan akurat.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <h4 class="h5 fw-bold mb-3">Desain</h4>
+                        <p class="text-muted small mb-0">Pembuatan layout tata letak dan gambar 3D render agar Anda bisa melihat visualisasi akhir ruangan.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <h4 class="h5 fw-bold mb-3">Produksi</h4>
+                        <p class="text-muted small mb-0">Proses fabrikasi furniture dan perakitan material di workshop profesional kami dengan pengawasan ketat.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">5</div>
+                        <h4 class="h5 fw-bold mb-3">Instalasi</h4>
+                        <p class="text-muted small mb-0">Pengiriman dan pemasangan komponen interior serta furniture di lokasi Anda oleh tenaga ahli berpengalaman.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">6</div>
+                        <h4 class="h5 fw-bold mb-3">Finishing</h4>
+                        <p class="text-muted small mb-0">Pengecekan akhir kualitas (Quality Control), pembersihan area, dan serah terima kunci projek selesai.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Grafik Pembuatan / Statistik Projek -->
+    <section id="statistik">
+        <div class="container text-center">
+            <h6 class="text-uppercase fw-bold" style="color: var(--primary-gold); letter-spacing: 2px;">Data & Grafik</h6>
+            <h2 class="section-title">Statistik Pengerjaan Projek</h2>
+            <p class="text-muted mx-auto mb-5" style="max-width: 600px;">Perkembangan pertumbuhan proyek serta variasi layanan interior yang dipercayakan kepada kami.</p>
+            
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="custom-card p-4">
+                        <h4 class="h5 fw-bold mb-4 text-start">Jumlah Projek per Tahun</h4>
+                        <div style="position: relative; height: 320px; width: 100%;">
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="custom-card p-4">
+                        <h4 class="h5 fw-bold mb-4 text-start">Jenis Projek</h4>
+                        <div style="position: relative; height: 320px; width: 100%;">
+                            <canvas id="doughnutChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Section Testimoni -->
+    <section id="testimoni" class="bg-light">
+        <div class="container text-center">
+            <h6 class="text-uppercase fw-bold" style="color: var(--primary-gold); letter-spacing: 2px;">Testimoni Klien</h6>
+            <h2 class="section-title">Apa Kata Mereka Tentang Kami</h2>
+            <p class="text-muted mx-auto mb-5" style="max-width: 600px;">Kepuasan pelanggan adalah prioritas utama kami. Simak ulasan langsung dari klien setia kami.</p>
+            
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card text-start">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-muted mb-4">"Hasil interiornya sangat bagus dan sesuai dengan desain yang kami inginkan. Pengerjaannya detail dan sangat rapi."</p>
+                        <h5 class="h6 fw-bold mb-1 text-dark">Ibu Sarah</h5>
+                        <p class="small text-muted mb-0">Pemilik Rumah di BSD City</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card text-start">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-muted mb-4">"Pelayanannya ramah, pengerjaan cepat, dan hasil furniture sangat rapi. Sangat merekomendasikan Nova Interior untuk pembuatan kitchen set."</p>
+                        <h5 class="h6 fw-bold mb-1 text-dark">Bapak Hendra</h5>
+                        <p class="small text-muted mb-0">Pemilik Rumah di Menteng</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card text-start">
+                        <div class="text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="text-muted mb-4">"Nova Interior sangat membantu kami membuat rumah menjadi lebih nyaman dan estetik. Komunikasi lancar dan solutif."</p>
+                        <h5 class="h6 fw-bold mb-1 text-dark">Ibu Rina</h5>
+                        <p class="small text-muted mb-0">Pemilik Apartemen di Kuningan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Section Kontak -->
+    <section id="kontak">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-uppercase fw-bold" style="color: var(--primary-gold); letter-spacing: 2px;">Hubungi Kami</h6>
+                <h2 class="section-title">Konsultasikan Projek Anda</h2>
+                <p class="text-muted mx-auto" style="max-width: 600px;">Punya pertanyaan atau ingin merancang interior impian? Jangan ragu untuk menghubungi tim kami.</p>
+            </div>
+            
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <div class="custom-card p-4 p-md-5 h-100">
+                        <h3 class="h4 fw-bold mb-4 text-dark">Informasi Kontak</h3>
+                        
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="fs-4 text-gold me-3" style="color: var(--primary-gold);"><i class="bi bi-geo-alt-fill"></i></div>
+                            <div>
+                                <h5 class="h6 fw-bold mb-1">Alamat Kantor & Workshop</h5>
+                                <p class="text-muted small mb-0">Jl. Raya Interior No. 45, BSD City, Tangerang Selatan, Banten</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="fs-4 text-gold me-3" style="color: var(--primary-gold);"><i class="bi bi-whatsapp"></i></div>
+                            <div>
+                                <h5 class="h6 fw-bold mb-1">Nomor WhatsApp</h5>
+                                <p class="text-muted small mb-0">+62 812-3456-7890</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="fs-4 text-gold me-3" style="color: var(--primary-gold);"><i class="bi bi-envelope-fill"></i></div>
+                            <div>
+                                <h5 class="h6 fw-bold mb-1">Email Resmi</h5>
+                                <p class="text-muted small mb-0">info@novainterior.co.id</p>
+                            </div>
+                        </div>
+
+                        <div class="d-flex align-items-start">
+                            <div class="fs-4 text-gold me-3" style="color: var(--primary-gold);"><i class="bi bi-clock-fill"></i></div>
+                            <div>
+                                <h5 class="h6 fw-bold mb-1">Jam Operasional</h5>
+                                <p class="text-muted small mb-0">Senin - Sabtu: 09.00 - 17.00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="custom-card p-4 p-md-5">
+                        <h3 class="h4 fw-bold mb-4 text-dark">Kirim Pesan</h3>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nama" class="form-label small fw-bold">Nama Lengkap</label>
+                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama Anda" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label small fw-bold">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="nama@email.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="whatsapp" class="form-label small fw-bold">Nomor WhatsApp</label>
+                                    <input type="tel" class="form-control" id="whatsapp" placeholder="08xxxxxxxxxx" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="layanan-pilihan" class="form-label small fw-bold">Pilihan Layanan</label>
+                                    <select class="form-select" id="layanan-pilihan" required>
+                                        <option value="" selected disabled>Pilih layanan...</option>
+                                        <option value="Desain Interior">Desain Interior</option>
+                                        <option value="Custom Furniture">Custom Furniture</option>
+                                        <option value="Kitchen Set">Kitchen Set</option>
+                                        <option value="Renovasi Ruangan">Renovasi Ruangan</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="pesan" class="form-label small fw-bold">Pesan</label>
+                                    <textarea class="form-control" id="pesan" rows="4" placeholder="Ceritakan detail ruangan atau kebutuhan interior Anda..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-gold w-100 py-3 rounded-pill fw-bold">Kirim Pesan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Nova%20Interior,%20saya%20tertarik%20untuk%20konsultasi%20mengenai%20desain%20interior." target="_blank" class="whatsapp-float" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- 10. Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <h5 class="text-white">Nova <span style="color: var(--primary-gold);">Interior</span></h5>
+                    <p class="small text-muted mb-4">Solusi terpercaya untuk mewujudkan desain interior impian Anda dengan kualitas terbaik, sentuhan elegan, dan ketepatan pengerjaan.</p>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Tiktok"><i class="bi bi-tiktok"></i></a>
+                        <a href="#" aria-label="Youtube"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Navigasi</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#beranda">Beranda</a></li>
+                        <li class="mb-2"><a href="#tentang">Tentang Kami</a></li>
+                        <li class="mb-2"><a href="#layanan">Layanan</a></li>
+                        <li class="mb-2"><a href="#galeri">Galeri</a></li>
+                        <li class="mb-2"><a href="#proses">Proses</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5>Layanan</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#layanan">Desain Interior</a></li>
+                        <li class="mb-2"><a href="#layanan">Custom Furniture</a></li>
+                        <li class="mb-2"><a href="#layanan">Kitchen Set</a></li>
+                        <li class="mb-2"><a href="#layanan">Renovasi Ruangan</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h5>Newsletter</h5>
+                    <p class="small text-muted">Dapatkan inspirasi desain dan penawaran khusus langsung di email Anda.</p>
+                    <form class="input-group mb-3">
+                        <input type="email" class="form-control form-control-sm" placeholder="Email Anda..." aria-label="Email Anda">
+                        <button class="btn btn-gold btn-sm" type="button">Daftar</button>
+                    </form>
+                </div>
+            </div>
+            <hr class="border-secondary">
+            <div class="row text-center text-md-start">
+                <div class="col-md-12 text-center">
+                    <p class="small text-muted mb-0">&copy; 2026 Nova Interior. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        // Navbar scroll behavior change
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.backgroundColor = 'rgba(26, 26, 26, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            } else {
+                navbar.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+
+        // Chart.js Setup
+        document.addEventListener('DOMContentLoaded', function() {
+            // Bar Chart: Jumlah Projek per Tahun
+            const ctxBar = document.getElementById('barChart').getContext('2d');
+            const barChart = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['2022', '2023', '2024', '2025', '2026'],
+                    datasets: [{
+                        label: 'Jumlah Projek',
+                        data: [65, 85, 110, 145, 175],
+                        backgroundColor: '#c5a059',
+                        borderRadius: 6,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(0,0,0,0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Doughnut Chart: Jenis Projek
+            const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+            const doughnutChart = new Chart(ctxDoughnut, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Living Room', 'Kitchen', 'Bedroom', 'Office', 'Lainnya'],
+                    datasets: [{
+                        data: [30, 25, 20, 15, 10],
+                        backgroundColor: [
+                            '#c5a059',
+                            '#2c2c2c',
+                            '#e2c487',
+                            '#555555',
+                            '#d6d3c9'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
